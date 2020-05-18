@@ -18,43 +18,46 @@
     <title>Mengambil Data JSON dari OMDBAPI</title>
 </head>
 <body>
-    <div class="container" style="margin-top: auto;">
-        <div class="card" id="app">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <div>
+    <div class=" jumbotron d-flex justifi-content-center align-items-center">
+        <div class="container">
+            <div class="card" id="app">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
                         <div>
-                            <movie-data :movie="movie" :error="error"></movie-data>
-                        </div>
-                        <template id="tpl-movie-data" v-if="!loading">
-                            <div v-if="!error">
-                                <!-- gambar ada disini -->
-                                    <img class="card-img" :src="movie.Poster" @load="imgLoaded" v-show="showImg" />
+                            <div>
+                                <movie-data :movie="movie" :error="error"></movie-data>
                             </div>
-                        </template>
+                            <template id="tpl-movie-data" v-if="!loading">
+                                <div v-if="!error">
+                                    <!-- gambar ada disini -->
+                                    <img class="card-img" :src="movie.Poster" @load="imgLoaded" v-show="showImg" />
+                                </div>
+                            </template>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-8" v-if="!error">
-                    <div class="card-body">
-                        <input id="movie-search" class="form-control" type="text" placeholder="Tulis sebuah judul film" @keyup.enter="searchHandler" />
-                        <br>
-                        <h5 class="card-title">{{movie.Title}}</h5>
-                        <p class="card-text">{{movie.Plot}}</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>Rilis: </strong>{{movie.Released}}</li>
-                            <li class="list-group-item"><strong>Ditulis oleh: </strong>{{movie.Writer}}</li>
-                            <li class="list-group-item"><strong>Genre: </strong>{{movie.Genre}}</li>
-                            <li class="list-group-item"><strong>Durasi: </strong>{{movie.Runtime}}</li>
-                            <li class="list-group-item"><strong>Penghargaan: </strong>{{movie.Awards}}</li>
-                        </ul>
+                    <div class="col-md-8" v-if="!error">
+                        <div class="card-body">
+                            <input id="movie-search" class="form-control" type="text" placeholder="Tulis sebuah judul film"
+                                @keyup.enter="searchHandler" />
+                            <br>
+                            <h5 class="card-title">{{movie.Title}}</h5>
+                            <p class="card-text">{{movie.Plot}}</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Rilis: </strong>{{movie.Released}}</li>
+                                <li class="list-group-item"><strong>Ditulis oleh: </strong>{{movie.Writer}}</li>
+                                <li class="list-group-item"><strong>Genre: </strong>{{movie.Genre}}</li>
+                                <li class="list-group-item"><strong>Durasi: </strong>{{movie.Runtime}}</li>
+                                <li class="list-group-item"><strong>Penghargaan: </strong>{{movie.Awards}}</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div v-show="error">
-                    <h5>{{movie.Error}}</h5>
+                    <div v-show="error">
+                        <h5>{{movie.Error}}</h5>
+                    </div>
                 </div>
             </div>
-        </div>   
-    </div> 
+        </div>
+    </div>
 </body>
 
 <script>
