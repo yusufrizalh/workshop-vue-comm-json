@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.5/velocity.js"></script>
+
+    <style>
+        .tengah {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lavender;
+        }
+    </style>
+    <title>Vue Dasar</title>
+</head>
+
+<body>
+    <div class="tengah" id="app">
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label for="angka1">Angka pertama</label>
+                    <input type="tel" class="form-control" placeholder="Tulis angka pertama" v-model="angka1">
+                </div>
+                <div class="form-group">
+                    <label for="angka2">Angka kedua</label>
+                    <input type="tel" class="form-control" placeholder="Tulis angka kedua" v-model="angka2">
+                </div>
+            </form>
+            <div class="card">
+                <div class="card-header">
+                    Hasil
+                </div>
+                <div class="card-body">
+                    {{ angka1 }} + {{ angka2 }} = {{ penjumlahan }} <br>
+                    {{ angka1 }} - {{ angka2 }} = {{ pengurangan }} <br>
+                    {{ angka1 }} * {{ angka2 }} = {{ perkalian }} <br>
+                    {{ angka1 }} / {{ angka2 }} = {{ pembagian }} <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        app = new Vue({
+            el: "#app",
+            data: {
+                angka1: null, angka2: null,
+                penjumlahan: null, pengurangan: null,
+                perkalian: null, pembagian: null
+            },
+            methods: {
+                hitung() {
+                    angka1 = Number(this.angka1)
+                    angka2 = Number(this.angka2)
+                    this.penjumlahan = angka1 + angka2
+                    this.pengurangan = angka1 - angka2
+                    this.perkalian = angka1 * angka2
+                    this.pembagian = angka1 / angka2
+                }
+            },
+            watch: {
+                angka1() {
+                    this.hitung()
+                },
+                angka2() {
+                    this.hitung()
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
